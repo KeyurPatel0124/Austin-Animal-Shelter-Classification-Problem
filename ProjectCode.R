@@ -1,9 +1,6 @@
 # Course:        CS 513-B Final Project
 # Project Name:  Austin Animal Center Shelter Outcome Classification
-# Group Members: Tulsi Patel CWID - 10440620
-#                Keyur Patel CWID - 10427232
-#                Michael Fang CWID - 10430930
-#                Sweta Ghosh Dastidar CWID - 10428557
+# By :            Keyur Patel CWID - 10427232
 
 ###################################################################################################################
 
@@ -144,7 +141,7 @@ CM_RF2
 # So, we decided to use those 20 important features to use as the predictor variables for the rest of the models. ####
 
 ############################################ Decision Tree - CART #################################################
-
+#Libraries for Decision trees
 library(rpart)
 library(rpart.plot)
 library(rattle)
@@ -153,6 +150,7 @@ library(rattle)
 mytree <- rpart(outcome_type~., data = training) #method="class")
 mytree
 
+#Plotting a clear tree
 prp(mytree, extra = 101)
 
 fancyRpartPlot(mytree)
@@ -161,15 +159,23 @@ fancyRpartPlot(mytree)
 plot <- rpart.plot(mytree, extra = 101)
 #fancyRpartPlot(mytree, palettes=c("Greys", "Oranges"))
 
+
+#Predicting the outcome
 Prediction_D <- predict(mytree, test, type="class")
 
+#Confusion Matrix
 table_D <- table(Actual = test$outcome_type, Prediction_D)
 
+
+#Error rate using Decision Trees
 error_D <- 1-sum(diag(table_D))/sum(table_D)
 error_D
+
+#Accuracy
 Accuracy_D <- (1-error_D)*100
 Accuracy_D
 
+#Printing the result
 cat("Accuracy for Decision Tree:",Accuracy_D,"%")
 
 # load Caret package for computing Confusion matrix
@@ -284,6 +290,9 @@ print(paste("Error Rate -", rate_knn))
 
 table_knn <- table(Test = test_norm[, 1], Prediction = fit_knn)
 table_knn
+
+
+#Accuracy
 accuracy_knn <- sum(diag(table_knn))/sum(table_knn)
 print(paste("Acurracy -", accuracy_knn))
 
@@ -301,14 +310,20 @@ Predict_svm <- predict(svm.model, test)
 
 table_svm <- table(actual=test$outcome_type, Predict_svm)
 
+
+#Error rate
 wrong_SVM <- (test$outcome_type!= Predict_svm)
 error_SVM <- sum(wrong_SVM)/length(wrong_SVM)
 error_SVM
 
+
+#Accuracy
 Accuracy_SVM <- (1-error_SVM)*100
 Accuracy_SVM
 cat("Accuracy for SVM:",Accuracy_SVM,"%")
 
+
+#Confusion Matrix for SVM
 CM_SVM <- confusionMatrix(table_svm)
 CM_SVM
 
@@ -319,7 +334,7 @@ x.svm.perf <- performance(x.svm.prob.rocr, "tpr","fpr")
 plot(x.svm.perf, col=6, add=TRUE)
 
 ############################################## NAIVE BAYESIAN #####################################################
-
+# Importing libraries for Naive Bayesian classifier
 library(e1071)
 library(class)
 
@@ -329,6 +344,8 @@ nBayes_OT
 
 Predict_NB <- predict(nBayes_OT, aacData_2)
 
+
+#Generating Confusion Matrix
 table_NB <- table(Actual = aacData_2$outcome_type, Prediction = Predict_NB)
 
 # Measure of the performance of NB
