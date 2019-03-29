@@ -29,7 +29,7 @@ importance(fitRF1)
 varImpPlot(fitRF1)
 ```
 
-This is the plot for [Decision Tree](https://github.com/KeyurPatel0124/Austin-Animal-Shelter-Classification-Problem/blob/master/Decision%20Tree.pdf) looks like this.
+This is the plot for [Decision Tree](https://github.com/KeyurPatel0124/Austin-Animal-Shelter-Classification-Problem/blob/master/Decision%20Tree.pdf).
 
 **C5.0**
 ```
