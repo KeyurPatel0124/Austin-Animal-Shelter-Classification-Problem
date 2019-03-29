@@ -9,7 +9,7 @@
 rm(list=ls())
 
 # Loading the original dataset
-aacData <- read.csv("C:/Users/harsh/Desktop/Fall 2018/Knowledge Discovery & Data Mining/Project/AAC Shelter Intakes and Outcomes/aac_intakes_outcomes.csv");
+aacData <- read.csv("C:/Users/patel/Downloads/aac_intakes_outcomes.csv");
 
 # Exploratory Data Analysis
 summary(aacData)
@@ -27,10 +27,10 @@ aacData_1$sex_upon_intake[aacData_1$sex_upon_intake == ""] <- "Unknown"
 aacData_1$sex_upon_outcome[aacData_1$sex_upon_outcome == "NULL"] <- "Unknown"
 
 # Writing the cleaned dataset to csv file
-write.csv(aacData_1, "C:/Users/harsh/Desktop/Fall 2018/Knowledge Discovery & Data Mining/Project/aacData_1.csv")
+write.csv(aacData_1, "C:/Users/patel/Documents/Stevens Assignments/CS 513/Final Project/aacData_1.csv")
 
 # Reading the processed dataset
-aacData_1 <- read.csv("C:/Users/harsh/Desktop/Fall 2018/Knowledge Discovery & Data Mining/Project/aacData_1.csv")
+aacData_1 <- read.csv("C:/Users/patel/Documents/Stevens Assignments/CS 513/Final Project/aacData_1.csv")
 
 # Exploratory Data Analysis
 View(aacData_1)
@@ -42,12 +42,6 @@ str(aacData_1)
 # APPLYING DATA MINING TECHNIQUES 
 
 ########################################## Random Forest Classifier 1 #############################################
-
-rm(list=ls())
-
-# Loading the processed dataset 
-aacData_1 <- read.csv("C:/Users/harsh/Desktop/Fall 2018/Knowledge Discovery & Data Mining/Project/aacData_1.csv")
-
 # Applying Random Forest Algorithm to the dataset ####
 library(randomForest)
 
@@ -96,10 +90,10 @@ aacData_2 <- subset(aacData_1, select = -c(5, 10, 19, 24))
 
 # Writing the final dataset into csv file.
 # Using this dataset as the input to the rest of the classifiers
-write.csv(aacData_2, "C:/Users/harsh/Desktop/Fall 2018/Knowledge Discovery & Data Mining/Project/aacData_2.csv")
+write.csv(aacData_2, "C:/Users/patel/Documents/Stevens Assignments/CS 513/Final Project/aacData_2.csv")
 
 # Loading the dataset
-aacData_2 <- read.csv("C:/Users/harsh/Desktop/Fall 2018/Knowledge Discovery & Data Mining/Project/aacData_2.csv")
+aacData_2 <- read.csv("C:/Users/patel/Documents/Stevens Assignments/CS 513/Final Project/aacData_2.csv")
 
 # Applying Random Forest Classiefier to the dataset
 library(randomForest)
@@ -378,7 +372,7 @@ result1 <- data.frame(Random_Forest = CM_RF2$overall[1],
                      SVM = CM_SVM$overall[1],
                      NB = CM_NB$overall[1])
 
-write.csv(result, "C:/Users/harsh/Desktop/Fall 2018/Knowledge Discovery & Data Mining/Project/finalresults.csv")
+write.csv(result, "C:/Users/patel/Documents/Stevens Assignments/CS 513/Final Project/Project/finalresults.csv")
 View(result1)
 
 
